@@ -5,8 +5,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    ports:
-      - "3000:80"
+    # ports:
+    #  - "3000:80"
     restart: unless-stopped
     depends_on:
       - backend
@@ -15,8 +15,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
+    # ports:
+    #  - "8000:8000"
     restart: unless-stopped
     volumes:
       - ./backend/db.sqlite3:/app/db.sqlite3

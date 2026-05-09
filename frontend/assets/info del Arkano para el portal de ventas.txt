@@ -1,0 +1,452 @@
+Sí. Este sería el plan completo para **Arkano - IA** usando **frontend en Flutter** y soporte de **hasta 5 imágenes por taller**.
+
+# Plan General Arkano - IA
+
+## 1. Tipo de aplicación recomendada
+
+Una **plataforma web administrativa + sitio público + app responsiva en Flutter**.
+
+La idea sería tener:
+
+**Sitio público**
+
+* Página principal
+* Talleres disponibles
+* Casos de éxito
+* Servicios
+* Agenda de citas
+* Contacto
+* Blog / recursos
+
+**Panel administrativo**
+
+* Control de talleres
+* Control de asistentes
+* Citas
+* Contactos / CRM
+* Casos de éxito
+* Galería de imágenes
+* Pagos
+* Reportes
+
+**Frontend**
+
+* Flutter Web primero
+* Preparado para compilar después a Android/iOS
+
+**Backend**
+
+* Django + Django REST Framework
+* PostgreSQL
+* API para Flutter
+* Panel admin interno
+
+---
+
+# 2. Módulos principales
+
+## A. Módulo de talleres
+
+Cada taller debe tener:
+
+* Título
+* Descripción corta
+* Descripción completa
+* Categoría
+* Nivel: básico, intermedio, avanzado
+* Modalidad: presencial, online, híbrido
+* Fecha
+* Hora
+* Duración
+* Precio
+* Cupo máximo
+* Lugar
+* Instructor
+* Estado: borrador, publicado, cerrado, finalizado
+* Hasta **5 imágenes**
+* Imagen principal
+* Video promocional opcional
+* Beneficios
+* Temario
+* Requisitos
+* Público objetivo
+
+---
+
+## B. Galería por taller
+
+Regla:
+
+* Mínimo 1 imagen
+* Máximo 5 imágenes
+* Una imagen marcada como principal
+* Orden de visualización
+* Texto alternativo para SEO
+* Compresión automática
+* Vista tipo carrusel en Flutter
+
+---
+
+## C. Registro de asistentes
+
+Datos sugeridos:
+
+* Nombre
+* Teléfono
+* Email
+* Ocupación
+* Empresa
+* Ciudad
+* Taller al que se inscribe
+* Estado de pago
+* Estado de asistencia
+* Código QR
+* Comentarios internos
+* Fuente del lead: Facebook, Instagram, referido, WhatsApp, web, evento
+
+---
+
+## D. Control de asistencia
+
+Funciones:
+
+* Check-in por QR
+* Check-in manual
+* Lista de asistentes
+* Asistió / no asistió
+* Hora de entrada
+* Exportación opcional a Excel/PDF
+* Certificado automático futuro
+
+---
+
+## E. Citas / asesorías
+
+Para vender consultorías o diagnósticos.
+
+Tipos de cita:
+
+* Asesoría IA
+* Diagnóstico de negocio
+* Automatización
+* Desarrollo de software
+* Capacitación empresarial
+* Mentoría personalizada
+
+Datos:
+
+* Nombre
+* Email
+* Teléfono
+* Fecha
+* Hora
+* Tipo de cita
+* Estado: solicitada, confirmada, realizada, cancelada
+* Notas
+* Origen del contacto
+
+---
+
+## F. Contactos / CRM
+
+Este módulo es clave para vender más.
+
+Estados del contacto:
+
+* Nuevo
+* Interesado
+* Contactado
+* Registrado a taller
+* Cliente
+* Cliente recurrente
+* Empresa potencial
+* Descartado
+
+Datos:
+
+* Nombre
+* Teléfono
+* Email
+* Empresa
+* Interés principal
+* Fuente
+* Historial de interacciones
+* Talleres tomados
+* Citas agendadas
+* Notas comerciales
+
+---
+
+## G. Casos de éxito
+
+Cada caso debe tener:
+
+* Título
+* Cliente / sector
+* Problema inicial
+* Solución aplicada
+* Resultado obtenido
+* Testimonio
+* Imagen antes/después
+* Video opcional
+* Categoría
+* Métricas
+* Publicado / oculto
+
+Ejemplos de categorías:
+
+* Negocios pequeños
+* Fotógrafos
+* Abogados
+* Restaurantes
+* Software
+* Automatización
+* Ventas
+* Productividad
+
+---
+
+# 3. Arquitectura técnica
+
+## Backend
+
+Recomendado:
+
+* Python
+* Django
+* Django REST Framework
+* PostgreSQL
+* JWT Authentication
+* Django Admin
+* Docker
+* API REST
+
+## Frontend
+
+* Flutter Web
+* Flutter Mobile preparado
+* Riverpod o Bloc para estado
+* Dio para consumir API
+* GoRouter para navegación
+* Material 3
+
+## Storage de imágenes
+
+Opciones:
+
+### Opción inicial sencilla
+
+Guardar imágenes en el servidor.
+
+### Opción profesional
+
+Usar almacenamiento tipo S3:
+
+* AWS S3
+* Cloudflare R2
+* DigitalOcean Spaces
+* Wasabi
+
+Yo recomiendo **Cloudflare R2** por costo y facilidad.
+
+---
+
+# 4. Modelo de base de datos sugerido
+
+Entidades principales:
+
+* User
+* Workshop
+* WorkshopImage
+* Attendee
+* Registration
+* Attendance
+* Appointment
+* Contact
+* SuccessCase
+* SuccessCaseImage
+* Testimonial
+* Payment
+* LeadSource
+* Category
+* Instructor
+
+---
+
+# 5. Fases de desarrollo
+
+## Fase 1 — Base comercial
+
+Objetivo: tener presencia profesional y captar leads.
+
+Incluye:
+
+* Landing pública
+* Listado de talleres
+* Detalle de taller
+* Galería de hasta 5 imágenes
+* Formulario de inscripción
+* Formulario de contacto
+* Panel admin básico
+
+---
+
+## Fase 2 — Operación de talleres
+
+Objetivo: controlar asistentes y ventas.
+
+Incluye:
+
+* Registro de asistentes
+* Estados de pago
+* Estados de asistencia
+* Check-in manual
+* Check-in por QR
+* Reporte de inscritos
+* Reporte por taller
+
+---
+
+## Fase 3 — CRM y citas
+
+Objetivo: no perder prospectos.
+
+Incluye:
+
+* Contactos
+* Pipeline comercial
+* Agenda de citas
+* Seguimiento
+* Notas
+* Historial del cliente
+* Filtros por interés, estado y origen
+
+---
+
+## Fase 4 — Casos de éxito y autoridad
+
+Objetivo: vender con prueba social.
+
+Incluye:
+
+* Casos de éxito
+* Testimonios
+* Galerías
+* Métricas
+* Publicación en sitio público
+
+---
+
+## Fase 5 — Automatización e IA
+
+Objetivo: diferenciar Arkano - IA.
+
+Incluye:
+
+* Chatbot Arkano
+* Generador de prompts
+* Recomendador de talleres
+* Emails automáticos
+* Mensajes WhatsApp
+* Seguimiento inteligente a leads
+
+---
+
+## Fase 6 — Comunidad / membresía
+
+Objetivo: ingresos recurrentes.
+
+Incluye:
+
+* Acceso de alumnos
+* Materiales descargables
+* Videos
+* Prompts premium
+* Certificados
+* Membresía mensual
+* Comunidad privada
+
+---
+
+# 6. Pantallas principales en Flutter
+
+## Públicas
+
+* Home
+* Talleres
+* Detalle de taller
+* Registro a taller
+* Casos de éxito
+* Servicios
+* Agenda cita
+* Contacto
+* Blog / recursos
+
+## Administrativas
+
+* Dashboard
+* Talleres
+* Crear/editar taller
+* Galería de taller
+* Asistentes
+* Registros
+* Citas
+* Contactos CRM
+* Casos de éxito
+* Reportes
+* Configuración
+
+---
+
+# 7. Prioridad recomendada
+
+Yo lo construiría en este orden:
+
+1. Backend Django con modelos principales
+2. API REST
+3. Flutter Web público
+4. Panel admin Flutter
+5. Subida de imágenes por taller
+6. Registro de asistentes
+7. Citas
+8. CRM
+9. Casos de éxito
+10. IA y automatizaciones
+
+---
+
+# 8. MVP recomendado
+
+Para empezar sin hacerlo enorme:
+
+## MVP Arkano - IA
+
+Incluye:
+
+* Home profesional
+* Talleres
+* Detalle de taller
+* Hasta 5 imágenes por taller
+* Registro de asistentes
+* Contactos
+* Citas
+* Casos de éxito
+* Panel administrativo básico
+* API Django
+* Frontend Flutter Web
+
+Con eso ya puedes vender, captar leads y administrar operación.
+
+---
+
+# Recomendación final
+
+Arkano - IA debe construirse como una **plataforma comercial inteligente**, no solo como página web.
+
+La primera versión debe enfocarse en:
+
+**vender talleres + captar contactos + mostrar autoridad + controlar asistentes.**
+
+Después se convierte en:
+
+**academia + CRM + consultoría + comunidad + plataforma IA.**

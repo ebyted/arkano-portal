@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arkano-IA · Admin</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    /* Admin overrides */
+    body { background: var(--bg); color: var(--text); }
+    table { font-size: 13px; }
+    input, select, textarea {
+      background: var(--surface-2);
+      border: 1px solid var(--border-soft);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-family: var(--body);
+      font-size: 13px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--cyan);
+    }
+    select option { background: var(--surface-2); }
+    a { text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body class="palette-cyber">
+  <div class="bg-atmosphere"></div>
+  <div class="bg-noise"></div>
+  <div id="admin-root"></div>
+
+  <script type="text/babel" src="data.jsx"></script>
+  <script type="text/babel" src="admin.jsx"></script>
+</body>
+</html>

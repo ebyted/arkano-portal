@@ -1,5 +1,8 @@
 // API client + data layer
-const API_BASE = 'http://localhost:8000/api';
+// En local apunta directo al servidor Django; en producción nginx hace el proxy.
+const _LOCAL = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+const API_BASE  = _LOCAL ? 'http://localhost:8000/api' : '/api';
+const MEDIA_BASE = _LOCAL ? 'http://localhost:8000' : '';
 
 async function apiFetch(path, options = {}) {
   const token = localStorage.getItem('arkano_token');
@@ -160,7 +163,7 @@ function normalizeWorkshop(w) {
     temario: w.curriculum || [],
     requisitos: w.requirements || [],
     publico: w.target_audience || '',
-    images: (w.images || []).map(img => img.image?.startsWith('http') ? img.image : `http://localhost:8000/media/${img.image}`),
+    images: (w.images || []).map(img => img.image?.startsWith('http') ? img.image : `${MEDIA_BASE}/media/${img.image}`),
     accent: w.accent || 'cyan',
   };
 }

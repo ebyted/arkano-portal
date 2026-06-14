@@ -5,8 +5,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    # ports:
-    #  - "3000:80"
+    ports:
+      - "80:80"
     restart: unless-stopped
     depends_on:
       - backend
@@ -15,11 +15,13 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    # Puerto 8000 solo accesible internamente (nginx del frontend hace proxy)
     # ports:
     #  - "8000:8000"
     restart: unless-stopped
     volumes:
-      - ./backend/db.sqlite3:/app/db.sqlite3
       - ./backend/media:/app/media
+    env_file:
+      - ./backend/.env
     environment:
-      - DEBUG=True
+      - DEBUG=False

@@ -4,6 +4,7 @@ const { useState: useStateA, useEffect: useEffectA, useMemo: useMemoA } = React;
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "palette": "cyber",
   "heroVariant": "v1",
+  "heroFeature": "talleres",
   "density": "comfortable",
   "accent": "duo"
 }/*EDITMODE-END*/;
@@ -119,6 +120,15 @@ function App() {
               { value: 'v3', label: 'Center' }
             ]}
             onChange={v => setTweak('heroVariant', v)}
+          />
+          <TweakRadio
+            label="Destacado"
+            value={tweaks.heroFeature}
+            options={[
+              { value: 'talleres', label: 'Taller' },
+              { value: 'agentes', label: 'Agentes IA' }
+            ]}
+            onChange={v => setTweak('heroFeature', v)}
           />
         </TweakSection>
 

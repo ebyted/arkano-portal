@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 280">
+  <defs>
+    <radialGradient id="glow-c" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7C5BFF" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#07080F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-l" cx="22%" cy="38%" r="45%">
+      <stop offset="0%" stop-color="#4DD4FF" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#07080F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-r" cx="78%" cy="62%" r="42%">
+      <stop offset="0%" stop-color="#C84BE0" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#07080F" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4DD4FF"/>
+      <stop offset="50%" stop-color="#7C5BFF"/>
+      <stop offset="100%" stop-color="#C84BE0"/>
+    </linearGradient>
+    <filter id="glow-soft">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-md">
+      <feGaussianBlur stdDeviation="5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- BG -->
+  <rect width="480" height="280" fill="#07080F"/>
+  <circle cx="240" cy="140" r="210" fill="url(#glow-c)"/>
+  <circle cx="105" cy="105" r="190" fill="url(#glow-l)"/>
+  <circle cx="375" cy="175" r="170" fill="url(#glow-r)"/>
+
+  <!-- Grid -->
+  <g stroke="#7C5BFF" stroke-width="0.4" opacity="0.07">
+    <line x1="0" y1="56" x2="480" y2="56"/>
+    <line x1="0" y1="112" x2="480" y2="112"/>
+    <line x1="0" y1="168" x2="480" y2="168"/>
+    <line x1="0" y1="224" x2="480" y2="224"/>
+    <line x1="48" y1="0" x2="48" y2="280"/>
+    <line x1="96" y1="0" x2="96" y2="280"/>
+    <line x1="144" y1="0" x2="144" y2="280"/>
+    <line x1="192" y1="0" x2="192" y2="280"/>
+    <line x1="240" y1="0" x2="240" y2="280"/>
+    <line x1="288" y1="0" x2="288" y2="280"/>
+    <line x1="336" y1="0" x2="336" y2="280"/>
+    <line x1="384" y1="0" x2="384" y2="280"/>
+    <line x1="432" y1="0" x2="432" y2="280"/>
+  </g>
+
+  <!-- Connection lines: center (240,140) → satellite centers -->
+  <g stroke-dasharray="5 3" stroke-width="1" opacity="0.45">
+    <line x1="240" y1="140" x2="108" y2="76"  stroke="#4DD4FF"/>
+    <line x1="240" y1="140" x2="240" y2="40"  stroke="#7C5BFF" stroke-width="1.5"/>
+    <line x1="240" y1="140" x2="372" y2="76"  stroke="#7C5BFF"/>
+    <line x1="240" y1="140" x2="372" y2="204" stroke="#C84BE0"/>
+    <line x1="240" y1="140" x2="240" y2="240" stroke="#7C5BFF" opacity="0.35"/>
+    <line x1="240" y1="140" x2="108" y2="204" stroke="#4DD4FF"/>
+  </g>
+
+  <!-- Traveling data dots -->
+  <circle cx="174" cy="108" r="3" fill="#4DD4FF"  opacity="0.95" filter="url(#glow-soft)"/>
+  <circle cx="240" cy="90"  r="3" fill="#7C5BFF"  opacity="0.95" filter="url(#glow-soft)"/>
+  <circle cx="306" cy="108" r="3" fill="#7C5BFF"  opacity="0.95" filter="url(#glow-soft)"/>
+  <circle cx="306" cy="172" r="3" fill="#C84BE0"  opacity="0.95" filter="url(#glow-soft)"/>
+  <circle cx="174" cy="172" r="3" fill="#4DD4FF"  opacity="0.95" filter="url(#glow-soft)"/>
+
+  <!-- ── Satellite nodes (56×48) centered at given coords ── -->
+
+  <!-- CHAT  → center (108, 76) → rect at (80, 52) -->
+  <g>
+    <rect x="80" y="52" width="56" height="48" rx="9" fill="#11142A" stroke="#4DD4FF" stroke-width="1"/>
+    <circle cx="128" cy="60" r="4" fill="#4ade80" opacity="0.9"/>
+    <text x="108" y="74" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#4DD4FF" letter-spacing="1.5">CHAT</text>
+    <text x="108" y="86" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#5C6394">WhatsApp</text>
+    <text x="108" y="96" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#5C6394">Web · IG</text>
+  </g>
+
+  <!-- LEADS → center (240, 40) → rect at (212,16) -->
+  <g>
+    <rect x="212" y="16" width="56" height="48" rx="9" fill="#11142A" stroke="#7C5BFF" stroke-width="1.5"/>
+    <text x="240" y="37" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#7C5BFF" letter-spacing="1.5">LEADS</text>
+    <text x="240" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#5C6394">Califica</text>
+    <text x="240" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#5C6394">prospectos</text>
+  </g>
+
+  <!-- DOCS  → center (372, 76) → rect at (344,52) -->
+  <g>
+    <rect x="344" y="52" width="56" height="48" rx="9" fill="#11142A" stroke="#7C5BFF" stroke-width="1"/>
+    <text x="372" y="74" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#7C5BFF" letter-spacing="1.5">DOCS</text>
+    <text x="372" y="86" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#5C6394">Contratos</text>
+    <text x="372" y="96" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#5C6394">Minutas</text>
+  </g>
+
+  <!-- DATOS → center (372,204) → rect at (344,180) -->
+  <g>
+    <rect x="344" y="180" width="56" height="48" rx="9" fill="#11142A" stroke="#C84BE0" stroke-width="1"/>
+    <text x="372" y="202" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#C84BE0" letter-spacing="1.5">DATOS</text>
+    <text x="372" y="214" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#5C6394">Análisis</text>
+    <text x="372" y="224" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#5C6394">KPIs</text>
+  </g>
+
+  <!-- AUTO  → center (240,240) → rect at (212,216) -->
+  <g>
+    <rect x="212" y="216" width="56" height="48" rx="9" fill="#11142A" stroke="#7C5BFF" stroke-width="1" opacity="0.85"/>
+    <text x="240" y="237" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#7C5BFF" letter-spacing="1.5">AUTO</text>
+    <text x="240" y="250" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#5C6394">Procesos</text>
+    <text x="240" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#5C6394">manuales</text>
+  </g>
+
+  <!-- 24/7  → center (108,204) → rect at (80,180) -->
+  <g>
+    <rect x="80" y="180" width="56" height="48" rx="9" fill="#11142A" stroke="#4DD4FF" stroke-width="1"/>
+    <text x="108" y="208" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="bold" fill="#4DD4FF">24/7</text>
+    <text x="108" y="222" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#5C6394">Siempre</text>
+  </g>
+
+  <!-- ── Center: AI Agent ── -->
+  <!-- Pulse rings -->
+  <circle cx="240" cy="140" r="56" fill="none" stroke="url(#grad)" stroke-width="0.5" opacity="0.35"/>
+  <circle cx="240" cy="140" r="47" fill="none" stroke="url(#grad)" stroke-width="0.5" opacity="0.25"/>
+
+  <!-- Main circle body -->
+  <circle cx="240" cy="140" r="40" fill="#0F1226" stroke="url(#grad)" stroke-width="2"/>
+  <!-- Inner soft glow -->
+  <circle cx="240" cy="140" r="30" fill="url(#grad)" opacity="0.1" filter="url(#glow-md)"/>
+
+  <!-- Robot face icon -->
+  <!-- Antenna -->
+  <line x1="240" y1="100" x2="240" y2="112" stroke="#7C5BFF" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="240" cy="98" r="3.5" fill="#7C5BFF" filter="url(#glow-soft)"/>
+
+  <!-- Head outline -->
+  <rect x="221" y="114" width="38" height="34" rx="7" fill="none" stroke="url(#grad)" stroke-width="1.5"/>
+
+  <!-- Eyes -->
+  <circle cx="231" cy="127" r="4" fill="#4DD4FF" opacity="0.9" filter="url(#glow-soft)"/>
+  <circle cx="249" cy="127" r="4" fill="#C84BE0" opacity="0.9" filter="url(#glow-soft)"/>
+  <!-- Eye shine -->
+  <circle cx="232.5" cy="125.5" r="1.2" fill="#fff" opacity="0.7"/>
+  <circle cx="250.5" cy="125.5" r="1.2" fill="#fff" opacity="0.7"/>
+
+  <!-- Mouth -->
+  <rect x="229" y="137" width="22" height="5" rx="2.5" fill="none" stroke="url(#grad)" stroke-width="1.2"/>
+  <rect x="232" y="138.5" width="5" height="2" rx="1" fill="#7C5BFF" opacity="0.7"/>
+  <rect x="239" y="138.5" width="5" height="2" rx="1" fill="#7C5BFF" opacity="0.7"/>
+
+  <!-- Side ears -->
+  <rect x="213" y="121" width="8" height="12" rx="3" fill="none" stroke="#4DD4FF" stroke-width="1" opacity="0.65"/>
+  <rect x="259" y="121" width="8" height="12" rx="3" fill="none" stroke="#C84BE0" stroke-width="1" opacity="0.65"/>
+
+  <!-- AGENTE · IA label below center -->
+  <text x="240" y="178" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#8E94BD" letter-spacing="2.5">AGENTE · IA</text>
+
+  <!-- Bottom watermark -->
+  <text x="240" y="272" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#1A1F40" letter-spacing="3">ARKANO-IA · AGENTES INTELIGENTES</text>
+</svg>

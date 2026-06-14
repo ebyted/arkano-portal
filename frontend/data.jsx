@@ -203,9 +203,21 @@ const SERVICES = [
   { id: 'mentoria', code: 'S-06', title: 'Mentoría personalizada', duracion: 'Mensual', precio: 3200, desc: 'Acompañamiento mensual para founders y profesionales que están construyendo con IA.' },
 ];
 
+const AGENTES_PROMO = {
+  code: 'S-IA',
+  title: 'Agentes Inteligentes de IA',
+  subtitle: 'Tu equipo nunca duerme.',
+  fecha: '24 / 7',
+  hora: null,
+  modalidad: 'Producción',
+  precio: null,
+  images: ['assets/agentes-ia.svg'],
+};
+
 window.API = API;
 window.WORKSHOPS = WORKSHOPS;
 window.CASES = CASES;
 window.SERVICES = SERVICES;
+window.AGENTES_PROMO = AGENTES_PROMO;
 window.loadData = loadData;
 window.normalizeWorkshop = normalizeWorkshop;

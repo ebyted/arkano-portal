@@ -10,7 +10,25 @@ function Eyebrow({ children, className = "" }) {
   );
 }
 
+const HERO_COPY = {
+  talleres: {
+    title: <>Programa, vende y opera <span className="grad">como un cyborg</span>.</>,
+    sub: 'Talleres, asesorías y automatizaciones de Inteligencia Artificial para negocios y profesionales que prefieren resolver hoy a entender mañana.',
+    cta1Label: 'Ver talleres abiertos',
+    cta1Target: 'talleres',
+  },
+  agentes: {
+    title: <>Automatiza con <span className="grad">Agentes Inteligentes</span>.</>,
+    sub: 'Despliega un agente de IA que trabaja 24/7: califica leads, responde clientes, genera documentos y automatiza procesos sin que muevas un dedo.',
+    cta1Label: 'Hablar con TRINI →',
+    cta1Target: 'agentes',
+  },
+};
+
 function Hero({ onOpenWorkshop, featured, onScrollTo, tweaks }) {
+  const copy = HERO_COPY[tweaks.heroFeature] || HERO_COPY.talleres;
+  const isAgentes = tweaks.heroFeature === 'agentes';
+
   return (
     <section className="hero">
       <div className="container">
@@ -19,17 +37,12 @@ function Hero({ onOpenWorkshop, featured, onScrollTo, tweaks }) {
         </div>
         <div className="hero-grid">
           <div>
-            <h1 className="hero-title">
-              Programa, vende y opera <span className="grad">como un cyborg</span>.
-            </h1>
-            <p className="hero-sub">
-              Talleres, asesorías y automatizaciones de Inteligencia Artificial para
-              negocios y profesionales que prefieren resolver hoy a entender mañana.
-            </p>
+            <h1 className="hero-title">{copy.title}</h1>
+            <p className="hero-sub">{copy.sub}</p>
             <div className="hero-actions">
-              <button className="btn btn-primary" onClick={() => onScrollTo('talleres')}>
-                Ver talleres abiertos
-                <span style={{ fontSize: 16, lineHeight: 1 }}>→</span>
+              <button className="btn btn-primary" onClick={() => onScrollTo(copy.cta1Target)}>
+                {copy.cta1Label}
+                {!isAgentes && <span style={{ fontSize: 16, lineHeight: 1 }}>→</span>}
               </button>
               <button className="btn btn-ghost" onClick={() => onScrollTo('cita')}>
                 Agendar diagnóstico gratis
@@ -38,7 +51,13 @@ function Hero({ onOpenWorkshop, featured, onScrollTo, tweaks }) {
           </div>
 
           <div className={tweaks.heroVariant === 'v2' ? 'hero-aside' : ''}>
-            <FeaturedCard workshop={featured} onClick={() => onOpenWorkshop(featured.id)} />
+            <FeaturedCard
+              workshop={isAgentes ? AGENTES_PROMO : featured}
+              onClick={isAgentes
+                ? () => onScrollTo('agentes')
+                : () => onOpenWorkshop(featured.id)
+              }
+            />
             {tweaks.heroVariant === 'v2' && <HeroStats />}
           </div>
         </div>
@@ -77,24 +96,28 @@ function HeroStats() {
 }
 
 function FeaturedCard({ workshop, onClick }) {
+  const isPromo = !workshop.precio;
   return (
     <div className="feat-card" onClick={onClick} style={{ cursor: 'pointer' }}>
       <div
         className="feat-card-img"
         style={{
-          backgroundImage: workshop.images[0] ? `url(${workshop.images[0]})` : 'var(--grad)',
+          backgroundImage: workshop.images[0] ? `url(${workshop.images[0]})` : undefined,
           background: !workshop.images[0] ? 'var(--grad)' : undefined,
-          backgroundSize: 'cover'
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       ></div>
       <div className="feat-card-body">
-        <div className="code">{workshop.code} · DESTACADO</div>
+        <div className="code">{workshop.code} · {isPromo ? 'NUEVO' : 'DESTACADO'}</div>
         <h3>{workshop.title}</h3>
         <div className="sub">{workshop.subtitle}</div>
         <div className="meta">
-          <span><b>{workshop.fecha}</b> · {workshop.hora}</span>
+          <span><b>{workshop.fecha}</b>{workshop.hora ? ` · ${workshop.hora}` : ''}</span>
           <span>{workshop.modalidad}</span>
-          <span><b>${workshop.precio.toLocaleString()}</b> mxn</span>
+          {workshop.precio != null && (
+            <span><b>${workshop.precio.toLocaleString()}</b> mxn</span>
+          )}
         </div>
       </div>
     </div>

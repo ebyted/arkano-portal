@@ -252,12 +252,20 @@ body.theme-light .bg-noise { display: none; }
   background: var(--grad-soft); opacity: 0.5; pointer-events: none;
 }
 .feat-card-img {
-  height: 220px; background-size: cover; background-position: center;
+  height: 220px;
   position: relative;
+  overflow: hidden;
+}
+.feat-card-img-el {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 .feat-card-img::after {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(180deg, transparent 50%, var(--surface) 100%);
+  pointer-events: none;
 }
 .feat-card-body { padding: 22px 24px 24px; position: relative; }
 .feat-card .code { font-family: var(--mono); font-size: 10.5px; color: var(--cyan); letter-spacing: 0.16em; }
@@ -649,6 +657,22 @@ body.hero-v3 .hero-eyebrow-wrap { display: flex; justify-content: center; }
 ::selection { background: var(--cyan); color: var(--bg); }
 
 /* ── Agentes / TRINI Chat ── */
+.agent-banner-wrap {
+  width: 100%;
+  margin-bottom: 48px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 0 48px rgba(124, 91, 255, 0.15), 0 0 0 1px var(--border);
+}
+.agent-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@media (max-width: 640px) {
+  .agent-banner-wrap { margin-bottom: 32px; }
+}
+
 .agent-layout {
   display: grid;
   grid-template-columns: 320px 1fr;

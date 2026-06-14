@@ -125,3 +125,18 @@ SIMPLE_JWT = {
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+
+# ── Email ──────────────────────────────────────────────────────────────────────
+# En local (DEBUG=True) usamos backend sin verificación SSL (Avast intercepta TLS).
+# En producción (DEBUG=False / Linux) el backend estándar funciona sin problemas.
+if DEBUG:
+    EMAIL_BACKEND = 'arkano_project.email_backend.TLSNoVerifyEmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
+DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER', 'noreply@arkano-ia.com')
+NOTIFY_EMAIL = os.getenv('NOTIFY_EMAIL', 'ebyted@gmail.com')

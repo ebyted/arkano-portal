@@ -101,13 +101,16 @@ function FeaturedCard({ workshop, onClick }) {
     <div className="feat-card" onClick={onClick} style={{ cursor: 'pointer' }}>
       <div
         className="feat-card-img"
-        style={{
-          backgroundImage: workshop.images[0] ? `url(${workshop.images[0]})` : undefined,
-          background: !workshop.images[0] ? 'var(--grad)' : undefined,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      ></div>
+        style={!workshop.images[0] ? { background: 'var(--grad)' } : {}}
+      >
+        {workshop.images[0] && (
+          <img
+            src={workshop.images[0]}
+            alt={workshop.title}
+            className="feat-card-img-el"
+          />
+        )}
+      </div>
       <div className="feat-card-body">
         <div className="code">{workshop.code} · {isPromo ? 'NUEVO' : 'DESTACADO'}</div>
         <h3>{workshop.title}</h3>

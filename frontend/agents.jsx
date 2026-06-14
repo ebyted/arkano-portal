@@ -70,7 +70,11 @@ function AgentesSection() {
   const inputRef = React.useRef(null);
 
   React.useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Solo hacer scroll dentro del chat si el usuario ya interactuó
+    // (más de 1 mensaje = el saludo inicial + algo del usuario)
+    if (messages.length > 1) {
+      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
   }, [messages, loading]);
 
   const SUGGESTIONS = [
@@ -154,6 +158,16 @@ function AgentesSection() {
   return (
     <section className="section" id="agentes">
       <div className="container">
+
+        {/* ── Banner promocional ── */}
+        <div className="agent-banner-wrap">
+          <img
+            src="assets/agentes-banner.svg"
+            alt="Agentes Inteligentes de IA — Arkano-IA"
+            className="agent-banner-img"
+          />
+        </div>
+
         <div className="section-head">
           <div>
             <div className="eyebrow" style={{ marginBottom: 14 }}>// Agente IA</div>

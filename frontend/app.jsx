@@ -1,10 +1,13 @@
 // Main app + router
 const { useState: useStateA, useEffect: useEffectA, useMemo: useMemoA } = React;
 
+// Evitar que el navegador restaure la posición de scroll al recargar
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "palette": "cyber",
   "heroVariant": "v1",
-  "heroFeature": "talleres",
+  "heroFeature": "agentes",
   "density": "comfortable",
   "accent": "duo"
 }/*EDITMODE-END*/;
@@ -55,7 +58,11 @@ function App() {
     setView('detail');
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
-  const goHome = () => { setView('home'); setWorkshopId(null); };
+  const goHome = () => {
+    setView('home');
+    setWorkshopId(null);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
   const scrollTo = (id) => {
     if (view !== 'home') {
       setView('home');

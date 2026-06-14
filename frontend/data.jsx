@@ -22,6 +22,7 @@ const API = {
   getCases: () => apiFetch('/cases/?published=true'),
   register: (data) => apiFetch('/register/', { method: 'POST', body: JSON.stringify(data) }),
   bookAppointment: (data) => apiFetch('/cita/', { method: 'POST', body: JSON.stringify(data) }),
+  sendContact: (data) => apiFetch('/contacto/', { method: 'POST', body: JSON.stringify(data) }),
 
   // Admin
   login: (username, password) => apiFetch('/auth/login/', {

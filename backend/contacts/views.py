@@ -1,12 +1,62 @@
 from rest_framework import viewsets, status
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from django.core.mail import send_mail
+from django.conf import settings as django_settings
+import threading
+import logging
 
 from .models import Contact, Interaction
 from .serializers import ContactSerializer, InteractionSerializer
+
+logger = logging.getLogger(__name__)
+
+
+def _send_contact_notify(contact):
+    try:
+        subject = f'[Arkano-IA] Nuevo contacto: {contact.nombre}'
+        body = f"""Nuevo contacto recibido en arkano-ia.com
+
+━━━━━━━━━━━━━━━━━━━━
+👤  {contact.nombre}
+📧  {contact.email}
+📱  {contact.tel}
+🏢  {contact.empresa or '—'}
+━━━━━━━━━━━━━━━━━━━━
+
+Interés:
+{contact.interes or '(sin especificar)'}
+
+Origen: {contact.get_source_display()}
+ID:     #{contact.id}
+"""
+        send_mail(
+            subject=subject,
+            message=body,
+            from_email=django_settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[django_settings.NOTIFY_EMAIL],
+            fail_silently=False,
+        )
+        logger.info(f'[email] ✓ Notificación de contacto #{contact.id} enviada')
+    except Exception as e:
+        logger.error(f'[email] ✗ Error notificando contacto #{contact.id}: {e}')
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def public_contact(request):
+    serializer = ContactSerializer(data=request.data)
+    if serializer.is_valid():
+        contact = serializer.save()
+        threading.Thread(target=_send_contact_notify, args=(contact,), daemon=True).start()
+        return Response({
+            'message': 'Mensaje recibido. Te contactamos pronto.',
+            **serializer.data
+        }, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ContactViewSet(viewsets.ModelViewSet):

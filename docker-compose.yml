@@ -1,27 +1,15 @@
 version: '3.8'
 
+# Solo el frontend — el backend corre como app separada en Dokploy.
+# nginx hace proxy a BACKEND_URL (configurar en Dokploy → Environment).
+
 services:
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - BACKEND_URL=${BACKEND_URL:-http://localhost:8000}
     ports:
       - "80:80"
     restart: unless-stopped
-    depends_on:
-      - backend
-
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    # Puerto 8000 solo accesible internamente (nginx del frontend hace proxy)
-    # ports:
-    #  - "8000:8000"
-    restart: unless-stopped
-    volumes:
-      - ./backend/media:/app/media
-    env_file:
-      - ./backend/.env
-    environment:
-      - DEBUG=False

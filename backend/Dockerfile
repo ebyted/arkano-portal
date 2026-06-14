@@ -20,4 +20,4 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
 # Migraciones + gunicorn (producción)
-CMD python manage.py migrate && python setup_initial_data.py && gunicorn arkano_project.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120
+CMD python manage.py migrate --fake-initial && python setup_initial_data.py && gunicorn arkano_project.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120

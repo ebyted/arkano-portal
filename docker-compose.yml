@@ -1,13 +1,8 @@
 version: '3.8'
 
-# Solo el frontend — el backend corre como app separada en Dokploy.
-# Dokploy (Traefik) gestiona el puerto — no mapear 80 aquí.
-
 services:
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      args:
-        - BACKEND_URL=${BACKEND_URL:-http://localhost:8000}
     restart: unless-stopped

@@ -1,8 +1,7 @@
 // API client + data layer
-// En local apunta directo al servidor Django; en producción nginx hace el proxy.
 const _LOCAL = ['localhost', '127.0.0.1'].includes(window.location.hostname);
-const API_BASE  = _LOCAL ? 'http://localhost:8000/api' : '/api';
-const MEDIA_BASE = _LOCAL ? 'http://localhost:8000' : '';
+const API_BASE   = _LOCAL ? 'http://localhost:8000/api' : 'https://admin.arkano-ia.com/api';
+const MEDIA_BASE = _LOCAL ? 'http://localhost:8000'     : 'https://admin.arkano-ia.com';
 
 async function apiFetch(path, options = {}) {
   const token = localStorage.getItem('arkano_token');

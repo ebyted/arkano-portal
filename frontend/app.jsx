@@ -13,6 +13,7 @@ function Nav({ view, onNav, onHome }) {
     { id: 'talleres', label: 'Talleres' },
     { id: 'servicios', label: 'Servicios' },
     { id: 'casos', label: 'Casos' },
+    { id: 'agentes', label: 'TRINI IA' },
     { id: 'cita', label: 'Citas' },
     { id: 'contacto', label: 'Contacto' }
   ];
@@ -82,6 +83,7 @@ function App() {
             <WorkshopGrid onOpen={openWorkshop} />
             <ServicesGrid onScrollTo={scrollTo} />
             <CasesSection />
+            <AgentesSection />
             <CitaSection />
             <ContactBand onScrollTo={scrollTo} />
           </>

@@ -13,9 +13,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+# Archivos estáticos del admin (necesario con DEBUG=False)
+RUN python manage.py collectstatic --noinput
+
 # Exponer el puerto
 EXPOSE 8000
 
-# Comando para ejecutar migraciones, cargar datos e iniciar el servidor
-# En producción sería mejor usar gunicorn, pero para mantener la consistencia con start.bat:
-CMD python manage.py migrate && python setup_initial_data.py && python manage.py runserver 0.0.0.0:8000
+# Migraciones + gunicorn (producción)
+CMD python manage.py migrate && python setup_initial_data.py && gunicorn arkano_project.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120

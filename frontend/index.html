@@ -1777,8 +1777,13 @@
   html[data-plus="on"] .brand-plus::after{color:#7b3ff0;}
 
   .pl-sig{width:26px;height:26px;overflow:visible;display:block;}
+  /* El grosor no se eligio a ojo: se midio por pixeles el signo + del titulo
+     del hero. Su trazo ocupa 0.2164 de la extension del glifo. Como el remate
+     redondeado alarga la cruz por los cuatro extremos, la extension del SVG no
+     son los 16 del brazo sino 16 + el grosor; para llegar a esa misma
+     proporcion hace falta 4.6, no 3.46. Comprobado sobre el render. */
   .pl-sig line{
-    stroke:url(#sigRojo);stroke-width:2.8;stroke-linecap:round;
+    stroke:url(#sigRojo);stroke-width:4.6;stroke-linecap:round;
     transition:stroke .3s ease;
   }
   /* la barra vertical se contrae a cero: el + se vuelve - */

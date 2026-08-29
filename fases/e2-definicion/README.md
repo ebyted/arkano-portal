@@ -14,3 +14,16 @@
 - ⬜ Precio y margen de cada uno, con costo real por unidad (horas, herramientas, créditos).
 - ⬜ Qué incluye y qué **no** incluye, por escrito.
 - ⬜ Política de rondas: una incluida por fase, el resto se cotiza.
+
+## Niveles de producto (venían del issue #3)
+
+| Nivel | Qué incluye |
+|---|---|
+| 1 | Automatización de actividades |
+| 2 | Automatización de actividades + página web |
+| 3 | Automatización + página web + agente telefónico con número local incluido |
+
+**Proveedor de números telefónicos locales:** Zadarma.
+
+Falta ponerle precio y margen a cada nivel, y cruzarlos con la Plantilla A y la Plantilla B
+para saber qué combinación se vende como paquete.
